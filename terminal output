@@ -1,0 +1,66 @@
+Atul Rana
+IT 340
+
+DHCP SERVER GUIDE
+
+    Install a DHCP service
+    Configure DHCP to timeout connections after 5 minutes (for testing purposes)
+    Configure Nagios to Monitor Availability of DHCP
+    Configure Nagios to monitor number of active connections
+
+=============================================================
+=============================================================
+
+
+update repository
+sudo apt-get update
+
+install dhcp server and dependencies
+sudo apt-get install isc-dhcp-server -y
+
+open file to assign interfaces -isc-dhcp-server
+sudo nano /etc/default/isc-dhcp-server
+interfaces="wlan0 eth0"
+
+change file/folder permission
+sudo chown atul:root /folder/location
+
+create back up coly of dhcpd.conf
+sudo mv /etc/dhcp/dhcpd.conf.org
+
+open dhcpd.conf file and write
+sudo nano /etc/dhcp/dhcpd.conf
+
+# option definitions common to all supported networks...
+default-lease-time 600;
+max-lease-time 7200;
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+authoritative;
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+ 
+subnet 192.168.100.0 netmask 255.255.255.0 {  #network
+ range 192.168.100.20 192.168.100.100; # Range
+ option domain-name-servers 192.168.100.5, 8.8.8.8; #Pri DNS , Sec DNS
+ option domain-name "atul.private"; #Domain name 
+ option routers 192.168.100.1; #Gateway
+ option broadcast-address 192.168.100.255; #Broadcast
+ default-lease-time 150; #2.5min minimum
+ max-lease-time 300; #5min max for test purpose
+}
+
+
+status/stop/start/restart dhcp service
+sudo /etc/init.d/isc-dhcp-server {status restart stop start}
+sudo service isc-dhcp-server restart
+ifconfig
+
+============
+===Nagios===
+============
+/etc/nagios-plugins/config/dhcp.cfg
+sudo /user/lib/nagios/plugins/check_dhcp -v -i wlan0
+
+
