@@ -1,0 +1,41 @@
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ sudo /etc/init.d/isc-dhcp-server status
+[sudo] password for atul:
+Status of ISC DHCP server: dhcpd is not running.
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ clear
+
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ sudo /etc/init.d/isc-dhcp-server status
+Status of ISC DHCP server: dhcpd is not running.
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ sudo /etc/init.d/isc-dhcp-server start
+ * Starting ISC DHCP server dhcpd                                        [ OK ]
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ sudo /etc/init.d/isc-dhcp-server stop
+ * Stopping ISC DHCP server dhcpd                                        [ OK ]
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ sudo /etc/init.d/isc-dhcp-server restart
+ * Stopping ISC DHCP server dhcpd                                        [fail]
+ * Starting ISC DHCP server dhcpd                                        [ OK ]
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$ ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:1b:24:e6:19:ea  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:2483 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2483 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:575413 (575.4 KB)  TX bytes:575413 (575.4 KB)
+
+wlan0     Link encap:Ethernet  HWaddr 00:1c:bf:0d:19:85  
+          inet addr:192.168.1.108  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::21c:bfff:fe0d:1985/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:17213 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:12188 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:15427166 (15.4 MB)  TX bytes:1563359 (1.5 MB)
+
+atul@atul-HP-Pavilion-dv6500-Notebook-PC:~$
